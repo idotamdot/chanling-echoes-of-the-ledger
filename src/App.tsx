@@ -424,10 +424,10 @@ export default function App() {
         <div className="flex items-center gap-3">
           <span className="text-base font-bold tracking-tight text-white flex items-center gap-2">
             <Radio className="w-4 h-4 text-cyan-400 animate-pulse" />
-            Chainling Bio-Forensics
+            Chainling Echoes of the Ledger
           </span>
           <span className="text-xs text-slate-500 font-mono hidden md:inline">
-            SPECIMEN ENGINE v1.0 · STRICT NANSEN CLIENT
+            BIO-SONIC SPECIMEN ENGINE · STRICT NANSEN CLIENT
           </span>
         </div>
 
@@ -1202,7 +1202,7 @@ export default function App() {
       {/* Footer */}
       <footer className="border-t border-slate-800 bg-[#0b0e17] px-6 py-3 text-xs text-slate-500 flex flex-wrap items-center justify-between gap-4 font-mono">
         <div className="flex items-center gap-2">
-          <span>CHAINLING STANDALONE FORENSICS</span>
+          <span>CHAINLING ECHOES OF THE LEDGER</span>
           <span aria-hidden="true">·</span>
           <span>NANSEN COMPLIANCE: 30 REQ/S · 600 REQ/MIN</span>
         </div>

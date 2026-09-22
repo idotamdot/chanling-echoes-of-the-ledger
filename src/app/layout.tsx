@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import '../index.css';
 
 export const metadata: Metadata = {
-  title: 'Chainling Forensic Specimen',
+  title: 'Chainling Echoes of the Ledger',
   description: 'On-chain forensic biological specimen & forensic visualization engine with immutable Nansen audit ledger and Web Audio vitals synthesis.',
 };
 

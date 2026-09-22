@@ -1,4 +1,4 @@
-# Chainling: On-Chain Forensic Specimen & Audit Engine
+# Chainling: Echoes of the Ledger
 
 Chainling maps on-chain forensic exploit telemetry (transactions, historical balance collapses, and counterparty graphs) into a biological specimen visualization paired with Web Audio biosonification, backed by an append-only Nansen audit ledger.
 
