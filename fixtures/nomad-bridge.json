@@ -4,7 +4,7 @@
     "targetName": "Nomad ERC20 Bridge",
     "address": "0x88a69b4e698a4b090df6cf5bd7b2d47325ad30a3",
     "chain": "ethereum",
-    "incidentDate": "2022-08-01T21:32:00Z",
+    "incidentDate": "2022-08-01T21:32:31Z",
     "exploitBlock": 15259101,
     "lossEstimateUsd": 190300000,
     "recoveredUsd": 36000000,
@@ -63,7 +63,7 @@
         "address": "0xa5c7f8a9a463283cbe9b251ee2bc3a45c613e551",
         "interaction_count": 48,
         "total_volume_usd": 41200000,
-        "first_interaction": "2022-08-01T21:32:15Z",
+        "first_interaction": "2022-08-01T21:32:31Z",
         "last_interaction": "2022-08-01T23:14:02Z",
         "classification": "ATTACKER_CORE",
         "label": "Original Calldata Replay Initiator"
@@ -75,7 +75,7 @@
         "first_interaction": "2022-08-01T21:44:10Z",
         "last_interaction": "2022-08-01T23:45:00Z",
         "classification": "REPLAY_BOT",
-        "label": "Mev Bot Swarm Node #1"
+        "label": "MEV Bot Swarm Node #1"
       },
       {
         "address": "0xb5c55076b2835f620df83222952084e5a139745b",
@@ -110,11 +110,11 @@
   "transactions": {
     "data": [
       {
-        "hash": "0x7a3099fc7ec2b9dbb3b4f6583d7a8d790d16be99407301cfa97ecff3db5df4c5",
-        "block_timestamp": "2022-08-01T21:32:15Z",
+        "hash": "0xb1f0ec40f324dfb0863d91e4f675f2ffaa9712132b6f23e62830d9669e092d50",
+        "block_timestamp": "2022-08-01T21:32:31Z",
         "from_address": "0xa5c7f8a9a463283cbe9b251ee2bc3a45c613e551",
         "to_address": "0x88a69b4e698a4b090df6cf5bd7b2d47325ad30a3",
-        "value_usd": 4820000,
+        "value_usd": 2304500,
         "method": "process(bytes message)",
         "token_symbol": "WBTC",
         "token_amount": "100.0",
@@ -122,15 +122,39 @@
         "is_exploit_vector": true
       },
       {
-        "hash": "0xb1082260f588a452ef89f07f9099e28e67b2d9d9cf9c636f328f5bc651b74548",
-        "block_timestamp": "2022-08-01T21:40:02Z",
+        "hash": "0x9488a0ffbb8f1a16631ad02e48aa44f6f8bb2ceba9eaee2ef044ef3c4ef4e112",
+        "block_timestamp": "2022-08-01T21:32:31Z",
         "from_address": "0xa5c7f8a9a463283cbe9b251ee2bc3a45c613e551",
         "to_address": "0x88a69b4e698a4b090df6cf5bd7b2d47325ad30a3",
-        "value_usd": 8190000,
+        "value_usd": 2304500,
         "method": "process(bytes message)",
-        "token_symbol": "WETH",
-        "token_amount": "5000.0",
-        "gas_usd": 56.10,
+        "token_symbol": "WBTC",
+        "token_amount": "100.0",
+        "gas_usd": 49.10,
+        "is_exploit_vector": true
+      },
+      {
+        "hash": "0x32cc68686dff6d3198031d2794eb3abefb1c099b2eb8c15694c03cc54421b474",
+        "block_timestamp": "2022-08-01T21:32:31Z",
+        "from_address": "0xa5c7f8a9a463283cbe9b251ee2bc3a45c613e551",
+        "to_address": "0x88a69b4e698a4b090df6cf5bd7b2d47325ad30a3",
+        "value_usd": 2304500,
+        "method": "process(bytes message)",
+        "token_symbol": "WBTC",
+        "token_amount": "100.0",
+        "gas_usd": 51.30,
+        "is_exploit_vector": true
+      },
+      {
+        "hash": "0x8a920235b2e93b6e709e20a00ebcf46c7ad7eb31ad77ae1ed76cf743b17c18ee",
+        "block_timestamp": "2022-08-01T21:32:31Z",
+        "from_address": "0xa5c7f8a9a463283cbe9b251ee2bc3a45c613e551",
+        "to_address": "0x88a69b4e698a4b090df6cf5bd7b2d47325ad30a3",
+        "value_usd": 2304500,
+        "method": "process(bytes message)",
+        "token_symbol": "WBTC",
+        "token_amount": "100.0",
+        "gas_usd": 52.80,
         "is_exploit_vector": true
       },
       {
@@ -143,30 +167,6 @@
         "token_symbol": "USDC",
         "token_amount": "3280000.0",
         "gas_usd": 120.45,
-        "is_exploit_vector": true
-      },
-      {
-        "hash": "0xa81c986161fd4bf16b080cd7a2f2eb559eb44ea8a1e8e458e0a35db4dbce8422",
-        "block_timestamp": "2022-08-01T21:58:30Z",
-        "from_address": "0x56d8b635a7c88fd1104d23d632af40c1c3aac4e3",
-        "to_address": "0x88a69b4e698a4b090df6cf5bd7b2d47325ad30a3",
-        "value_usd": 4910000,
-        "method": "process(bytes message)",
-        "token_symbol": "WETH",
-        "token_amount": "3000.0",
-        "gas_usd": 185.00,
-        "is_exploit_vector": true
-      },
-      {
-        "hash": "0xc982e51634ab9f74001bc2016599b8b209e7cba8b1c4114d59a850119e742881",
-        "block_timestamp": "2022-08-01T22:04:18Z",
-        "from_address": "0xb5c55076b2835f620df83222952084e5a139745b",
-        "to_address": "0x88a69b4e698a4b090df6cf5bd7b2d47325ad30a3",
-        "value_usd": 2210000,
-        "method": "process(bytes message)",
-        "token_symbol": "DAI",
-        "token_amount": "2210000.0",
-        "gas_usd": 195.40,
         "is_exploit_vector": true
       }
     ],

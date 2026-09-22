@@ -66,33 +66,16 @@ app.get('/api/cases/:id', async (req, res) => {
   }
 });
 
-// API: Run live or simulated probe
+// API: Run live Nansen probe (Strict - No demo/simulated fallback)
 app.post('/api/probe', async (req, res) => {
   const { caseId, apiKey } = req.body;
   const targetCase = CANONICAL_CASES[caseId] || CANONICAL_CASES.CASE_NOMAD_01;
-
   const keyToUse = apiKey || process.env.NANSEN_API_KEY;
 
   if (!keyToUse) {
-    // Record simulated entry to demonstrate audit ledger mechanism if no key
-    const simulatedEntry = {
-      id: crypto.randomUUID(),
-      timestamp: new Date().toISOString(),
-      endpoint: '/profiler/address/counterparties',
-      caseId: targetCase.caseId,
-      purpose: 'COUNTERPARTY_ANALYSIS' as const,
-      status: 'SUCCESS' as const,
-      httpStatus: 200,
-      creditsUsed: 5,
-      requestDurationMs: 145,
-    };
-    await LedgerManager.record(simulatedEntry);
-
-    res.json({
-      success: true,
-      mode: 'FIXTURE_VALIDATION',
-      message: 'Probe executed using cached fixture data and recorded to immutable ledger. To query live Nansen API, configure NANSEN_API_KEY.',
-      entry: simulatedEntry,
+    res.status(401).json({
+      success: false,
+      error: 'MISSING_NANSEN_API_KEY: A valid Nansen API key is required to query Nansen. Please configure NANSEN_API_KEY in .env or enter your key in the console.',
     });
     return;
   }
@@ -114,6 +97,73 @@ app.post('/api/probe', async (req, res) => {
     res.status(502).json({
       success: false,
       error: err instanceof Error ? err.message : String(err),
+    });
+  }
+});
+
+// API: Real On-Chain RPC Query (Queries live Ethereum Mainnet RPC directly)
+app.get('/api/chain/query/:address', async (req, res) => {
+  const address = req.params.address;
+  try {
+    const rpcUrl = 'https://cloudflare-eth.com';
+    // 1. Get balance
+    const balanceRes = await fetch(rpcUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method: 'eth_getBalance',
+        params: [address, 'latest'],
+        id: 1,
+      }),
+    });
+    const balanceJson = await balanceRes.json();
+    const balanceWei = BigInt(balanceJson.result || '0x0');
+    const balanceEth = Number(balanceWei) / 1e18;
+
+    // 2. Get latest block
+    const blockRes = await fetch(rpcUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method: 'eth_blockNumber',
+        params: [],
+        id: 2,
+      }),
+    });
+    const blockJson = await blockRes.json();
+    const latestBlock = parseInt(blockJson.result || '0x0', 16);
+
+    // 3. Get contract code existence
+    const codeRes = await fetch(rpcUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method: 'eth_getCode',
+        params: [address, 'latest'],
+        id: 3,
+      }),
+    });
+    const codeJson = await codeRes.json();
+    const bytecodeLength = (codeJson.result?.length || 2) / 2 - 1;
+
+    res.json({
+      success: true,
+      address,
+      liveEthereumRpc: 'https://cloudflare-eth.com',
+      currentBlock: latestBlock,
+      balanceEth: balanceEth.toFixed(6),
+      isContract: bytecodeLength > 0,
+      bytecodeBytes: bytecodeLength,
+      queriedAt: new Date().toISOString(),
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      error: 'Failed to query live Ethereum RPC node',
+      details: String(err),
     });
   }
 });
