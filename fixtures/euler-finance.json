@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "caseId": "CASE_EULER_02",
+    "targetName": "Euler Finance Vault",
+    "address": "0x27182842E098f60e3D5767947124971bac70ce82",
+    "chain": "ethereum",
+    "incidentDate": "2023-03-13T08:50:00Z",
+    "exploitBlock": 16817996,
+    "lossEstimateUsd": 197000000,
+    "recoveredUsd": 197000000,
+    "vectorClassification": "FLASH_LOAN_MANIPULATION",
+    "description": "Exploitation of donateToReserves function in Euler protocol. The attacker leveraged flash-loans to donate deposited collateral, creating an artificially bankrupt position that permitted liquidation with self-awarded discounts. Following extensive on-chain messaging, all stolen funds were restituted.",
+    "biologicalTaxonomy": {
+      "phylum": "Endoparasitic Hyper-Leverage Helminth",
+      "specimenCode": "SPEC-EULER-2718",
+      "morphology": "Coiled segmented macro-organism displaying dramatic oscillatory dilation during flash injection.",
+      "necrosisFactor": 0.89,
+      "parasiteDensity": 0.35,
+      "respirationBpm": 142,
+      "toxicityLevel": 0.45
+    }
+  },
+  "balances": [
+    {
+      "token_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "token_symbol": "WETH",
+      "balance": "87240.00",
+      "balance_usd": 146563200,
+      "date": "2023-03-13T08:00:00Z"
+    },
+    {
+      "token_address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "token_symbol": "USDC",
+      "balance": "34180000.00",
+      "balance_usd": 34180000,
+      "date": "2023-03-13T08:00:00Z"
+    },
+    {
+      "token_address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "token_symbol": "DAI",
+      "balance": "16250000.00",
+      "balance_usd": 16250000,
+      "date": "2023-03-13T08:00:00Z"
+    },
+    {
+      "token_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "token_symbol": "WETH",
+      "balance": "87240.00",
+      "balance_usd": 146563200,
+      "date": "2023-04-04T12:00:00Z"
+    }
+  ],
+  "counterparties": {
+    "data": [
+      {
+        "address": "0xb66cd966670d962c227b3eaba30a872dbfb995db",
+        "interaction_count": 18,
+        "total_volume_usd": 197000000,
+        "first_interaction": "2023-03-13T08:50:35Z",
+        "last_interaction": "2023-04-04T11:22:00Z",
+        "classification": "ATTACKER_CORE",
+        "label": "Euler Flash Loan Manipulator (Restituted)"
+      },
+      {
+        "address": "0x5f25976e3a0f885746047858835845cd6f583363",
+        "interaction_count": 6,
+        "total_volume_usd": 30000000,
+        "first_interaction": "2023-03-13T09:15:10Z",
+        "last_interaction": "2023-03-13T10:45:00Z",
+        "classification": "ARBITRAGEUR",
+        "label": "Secondary Liquidation Bot"
+      },
+      {
+        "address": "0x27182842e098f60e3d5767947124971bac70ce82",
+        "interaction_count": 45,
+        "total_volume_usd": 197000000,
+        "first_interaction": "2023-03-13T08:50:00Z",
+        "last_interaction": "2023-04-04T12:00:00Z",
+        "classification": "WHITE_HAT",
+        "label": "Euler Multisig Recovery Contract"
+      }
+    ],
+    "pagination": { "total": 3, "limit": 20 }
+  },
+  "transactions": {
+    "data": [
+      {
+        "hash": "0xc310a2521dd442dd13c7438ec7097629993776d42e734e55e35b645d88669708",
+        "block_timestamp": "2023-03-13T08:50:35Z",
+        "from_address": "0xb66cd966670d962c227b3eaba30a872dbfb995db",
+        "to_address": "0x27182842E098f60e3D5767947124971bac70ce82",
+        "value_usd": 8700000,
+        "method": "donateToReserves(uint256 subAccountId, uint256 amount)",
+        "token_symbol": "eDAI",
+        "token_amount": "8700000.0",
+        "gas_usd": 142.30,
+        "is_exploit_vector": true
+      },
+      {
+        "hash": "0x71a908be0eea614b60fcc7f410864f14b69c18c3b1a01c444039794c778260e3",
+        "block_timestamp": "2023-03-13T08:52:10Z",
+        "from_address": "0xb66cd966670d962c227b3eaba30a872dbfb995db",
+        "to_address": "0x27182842E098f60e3D5767947124971bac70ce82",
+        "value_usd": 116000000,
+        "method": "liquidate(address violator, address underlying, ...)",
+        "token_symbol": "eWETH",
+        "token_amount": "69000.0",
+        "gas_usd": 310.50,
+        "is_exploit_vector": true
+      },
+      {
+        "hash": "0x36cf4b3f889efd90ff39ef2a2fb2538cb3fb2b66bf1c5520d283995eb8ea5cfc",
+        "block_timestamp": "2023-04-04T11:22:00Z",
+        "from_address": "0xb66cd966670d962c227b3eaba30a872dbfb995db",
+        "to_address": "0x27182842E098f60e3D5767947124971bac70ce82",
+        "value_usd": 197000000,
+        "method": "transfer(address to, uint256 value)",
+        "token_symbol": "WETH/DAI/USDC",
+        "token_amount": "Restitution Full",
+        "gas_usd": 35.10,
+        "is_exploit_vector": false
+      }
+    ],
+    "pagination": { "total": 3, "limit": 50 }
+  }
+}

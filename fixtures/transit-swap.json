@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "caseId": "CASE_TRANSIT_03",
+    "targetName": "Transit Swap Router",
+    "address": "0xed1e73742279feab4020935f7375990349381aa6",
+    "chain": "ethereum",
+    "incidentDate": "2022-10-01T18:14:00Z",
+    "exploitBlock": 15654000,
+    "lossEstimateUsd": 28900000,
+    "recoveredUsd": 18900000,
+    "vectorClassification": "ROUTING_LEAK_DEFECT",
+    "description": "An internal route execution flaw failed to validate bridge adapters during token swapping, permitting the caller to execute arbitrary transferFrom operations on any user wallet with unrevoked token approvals.",
+    "biologicalTaxonomy": {
+      "phylum": "Vascular Siphon Leech",
+      "specimenCode": "SPEC-TRANSIT-ED1E",
+      "morphology": "Asymmetric siphon funnel exhibiting targeted puncture nodes across approved allowance conduits.",
+      "necrosisFactor": 0.74,
+      "parasiteDensity": 0.48,
+      "respirationBpm": 118,
+      "toxicityLevel": 0.81
+    }
+  },
+  "balances": [
+    {
+      "token_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "token_symbol": "USDT",
+      "balance": "14200000.00",
+      "balance_usd": 14200000,
+      "date": "2022-10-01T18:00:00Z"
+    },
+    {
+      "token_address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "token_symbol": "WETH",
+      "balance": "5800.00",
+      "balance_usd": 7656000,
+      "date": "2022-10-01T18:00:00Z"
+    },
+    {
+      "token_address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "token_symbol": "USDT",
+      "balance": "150.00",
+      "balance_usd": 150,
+      "date": "2022-10-01T21:00:00Z"
+    }
+  ],
+  "counterparties": {
+    "data": [
+      {
+        "address": "0x75fcd5debf61d039938c8374780535b30e25dd10",
+        "interaction_count": 64,
+        "total_volume_usd": 28900000,
+        "first_interaction": "2022-10-01T18:14:22Z",
+        "last_interaction": "2022-10-01T20:30:10Z",
+        "classification": "ATTACKER_CORE",
+        "label": "Transit Swap Exploit Sink"
+      },
+      {
+        "address": "0x01a61c40212e3e6f987eb30aa9cc01a3512b9d3b",
+        "interaction_count": 12,
+        "total_volume_usd": 18900000,
+        "first_interaction": "2022-10-02T10:00:00Z",
+        "last_interaction": "2022-10-02T16:45:00Z",
+        "classification": "WHITE_HAT",
+        "label": "Transit Restitution Escrow"
+      }
+    ],
+    "pagination": { "total": 2, "limit": 20 }
+  },
+  "transactions": {
+    "data": [
+      {
+        "hash": "0x1b138622f46b1424e4d7705ccfa424ff7741d401a4db52f20387ca5efbbfa2e7",
+        "block_timestamp": "2022-10-01T18:14:22Z",
+        "from_address": "0x75fcd5debf61d039938c8374780535b30e25dd10",
+        "to_address": "0xed1e73742279feab4020935f7375990349381aa6",
+        "value_usd": 1240000,
+        "method": "callBytes(address target, bytes data)",
+        "token_symbol": "USDT",
+        "token_amount": "1240000.0",
+        "gas_usd": 88.40,
+        "is_exploit_vector": true
+      },
+      {
+        "hash": "0x39ba2bf5260126a117b077bfdb9e7e721d017bb59bf0a4ee041b6c7bfd5a9d82",
+        "block_timestamp": "2022-10-01T18:22:15Z",
+        "from_address": "0x75fcd5debf61d039938c8374780535b30e25dd10",
+        "to_address": "0xed1e73742279feab4020935f7375990349381aa6",
+        "value_usd": 3890000,
+        "method": "callBytes(address target, bytes data)",
+        "token_symbol": "WETH",
+        "token_amount": "2945.0",
+        "gas_usd": 112.50,
+        "is_exploit_vector": true
+      }
+    ],
+    "pagination": { "total": 2, "limit": 50 }
+  }
+}
